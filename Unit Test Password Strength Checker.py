@@ -11,18 +11,20 @@ class TestPasswordFunctions(unittest.TestCase):
         self.assertEqual(password_complexity_checker("Password123"), "Has uppercase True, has lowercase True, has number True,  has special character False")
 
     def test_password_suggestion_generator(self):
-        suggestions = password_suggestion_generator("kd9")
+        suggestions = password_suggestion_generator("kdo")
         self.assertIn("Try a longer password", suggestions)
+        # print(suggestions)
         self.assertIn("Try adding numbers to increase complexity of password", suggestions)
         self.assertIn("Try adding uppercase to increase complexity of password", suggestions)
 
     def test_text_file_analyzer(self):
-        result = text_file_analyzer("100000-most-common-passwords.csv")
+        result = text_file_analyzer("1000-most-common-passwords.csv")
         self.assertIn("Your strong password:", result)
         self.assertIn("Your weak password:", result)
 
 
     def test_password_ranker(self):
         passwords = ["Password123", "weakpassword","strongP@ss"]
+
 if __name__ == '__main__':
     unittest.main()
