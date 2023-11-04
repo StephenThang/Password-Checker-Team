@@ -1,4 +1,5 @@
 import unittest
+from INST326_Final_Project import text_file_analyzer,password_suggestion_generator,password_complexity_checker,password_length_checker
 
 class TestPasswordFunctions(unittest.TestCase):
 
