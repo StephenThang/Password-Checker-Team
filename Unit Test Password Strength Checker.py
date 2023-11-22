@@ -1,14 +1,13 @@
 import unittest
-from INST326_Final_Project import text_file_analyzer,password_suggestion_generator,password_complexity_checker,password_length_checker
-
+from INST326_Final_Project import *
 class TestPasswordFunctions(unittest.TestCase):
 
     def test_password_length_checker(self):
-        self.assertEqual(password_length_checker("12345678"), 8)
-        self.assertEqual(password_length_checker("12345"), "Password does not meet length criteria (8 characters)")
+        self.assertTrue(is_password_long_enough("12345678"))
+        self.assertFalse(is_password_long_enough("12345"))
 
     def test_password_complexity_checker(self):
-        self.assertEqual(password_complexity_checker("Password123"), "Has uppercase True, has lowercase True, has number True,  has special character False")
+        self.assertFalse(is_password_complex("Password123"))
 
     def test_password_suggestion_generator(self):
         suggestions = password_suggestion_generator("kdo")
@@ -18,9 +17,9 @@ class TestPasswordFunctions(unittest.TestCase):
         self.assertIn("Try adding uppercase to increase complexity of password", suggestions)
 
     def test_text_file_analyzer(self):
-        result = text_file_analyzer("1000-most-common-passwords.csv")
-        self.assertIn("Your strong password:", result)
-        self.assertIn("Your weak password:", result)
+        strong_passwords, weak_passwords = text_file_analyzer("1000-most-common-passwords.csv")
+        self.assertIn("Jackie72&$", strong_passwords )
+        self.assertIn("brian", weak_passwords)
 
 
     def test_password_ranker(self):
